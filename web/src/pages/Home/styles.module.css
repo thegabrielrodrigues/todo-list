@@ -1,0 +1,12 @@
+.home_container {
+  height: 100%;
+}
+
+.home_container .content {
+  height: 100%;
+  width: calc(100% - 22rem);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

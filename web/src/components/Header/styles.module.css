@@ -1,0 +1,6 @@
+.header_container {
+  padding: 4.5rem 5rem;
+  background-color: var(--gray-700);
+  display: flex;
+  justify-content: center;
+}
