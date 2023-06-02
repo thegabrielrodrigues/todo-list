@@ -1,5 +1,5 @@
+import Clipboard from '@/assets/clipboard.svg';
 import { Header } from '@/components/Header';
-import { TaskCard } from '@/components/TaskCard';
 import { TaskForm } from '@/components/TaskForm';
 import { TasksNumber } from '@/components/TasksNumber';
 
@@ -19,8 +19,13 @@ export function Home() {
         </div>
 
         <div className={styles.tasks}>
-          <TaskCard taskDescription="Task 1" finishedTask={false} />
-          <TaskCard taskDescription="Task 2" finishedTask={true} />
+          <div className={styles.empty_list}>
+            <img src={Clipboard} />
+            <div>
+              <p className={styles.strong_text}>Você ainda não tem tarefas cadastradas</p>
+              <p className={styles.normal_text}>Crie tarefas e organize seus itens a fazer</p>
+            </div>
+          </div>
         </div>
       </main>
     </div>
