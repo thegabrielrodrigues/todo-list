@@ -1,0 +1,23 @@
+.tasks_number_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tasks_number_container .primary {
+  color: var(--blue);
+}
+
+.tasks_number_container .secondary {
+  color: var(--purple);
+}
+
+.tasks_number_container .quantity {
+  height: 1.5rem;
+  width: 2rem;
+  border-radius: 30px;
+  background-color: var(--gray-400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
