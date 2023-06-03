@@ -1,11 +1,16 @@
+import { useState } from 'react';
+
 import Clipboard from '@/assets/clipboard.svg';
 import { Header } from '@/components/Header';
 import { TaskForm } from '@/components/TaskForm';
 import { TasksNumber } from '@/components/TasksNumber';
+import { TaskDTO } from '@/dtos/TaskDTO';
 
 import styles from './styles.module.css';
 
 export function Home() {
+  const [tasks, setTasks] = useState<TaskDTO[]>([]);
+
   return (
     <div className={styles.home_container}>
       <Header />

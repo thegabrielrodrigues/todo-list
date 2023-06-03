@@ -11,7 +11,7 @@ export function TaskCard({ taskDescription, finishedTask = true }: TaskDTO) {
       {finishedTask === true && (
         <div className={`${styles.task_card_container} ${styles.finished}`}>
           <button className={styles.finished_task_check_button}>
-            <img src={finishedTask ? Check : Uncheck} />
+            <img src={Check} />
           </button>
 
           <p className={`${styles.task_description} ${styles.finished}`}>{taskDescription}</p>
@@ -24,7 +24,7 @@ export function TaskCard({ taskDescription, finishedTask = true }: TaskDTO) {
       {finishedTask === false && (
         <div className={styles.task_card_container}>
           <button className={styles.finished_task_check_button}>
-            <img src={finishedTask ? Check : Uncheck} />
+            <img src={Uncheck} />
           </button>
 
           <p className={styles.task_description}>{taskDescription}</p>
