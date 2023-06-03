@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import Swal from 'sweetalert2';
+
 import Clipboard from '@/assets/clipboard.svg';
 import { Header } from '@/components/Header';
 import { TaskCard } from '@/components/TaskCard';
@@ -11,6 +13,49 @@ import styles from './styles.module.css';
 
 export function Home() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
+
+  function handleRemoveTask(taskDescription: string) {
+    Swal.fire({
+      title: 'Remover tarefa',
+      text: 'Você deseja realmente excluir esta tarefa?',
+      icon: 'warning',
+      confirmButtonText: 'Sim, excluir',
+      showDenyButton: true,
+      denyButtonText: 'Cancelar',
+      focusDeny: true,
+      background: 'var(--gray-500)',
+      color: 'var(--gray-100)',
+      customClass: {
+        confirmButton: 'swal2ConfirmButton',
+        denyButton: 'swal2DenyButton',
+      },
+    }).then((response) => {
+      if (response.isConfirmed) {
+        setTasks(tasks.filter((task) => task.taskDescription !== taskDescription));
+
+        Swal.fire({
+          title: 'Sua tarefa foi excluída com sucesso',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: 'var(--gray-500)',
+          color: 'var(--gray-100)',
+        });
+      } else if (response.isDenied) {
+        Swal.fire({
+          title: 'Operação cancelada',
+          text: 'Sua tarefa não foi excluída',
+          icon: 'info',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: 'var(--gray-500)',
+          color: 'var(--gray-100)',
+        });
+      }
+    });
+  }
 
   return (
     <div className={styles.home_container}>
@@ -27,7 +72,12 @@ export function Home() {
         <div className={styles.tasks}>
           {tasks.length > 0 ? (
             tasks.map((task) => (
-              <TaskCard key={task.taskDescription} taskDescription={task.taskDescription} finishedTask={task.finishedTask} />
+              <TaskCard
+                key={task.taskDescription}
+                onRemove={handleRemoveTask}
+                taskDescription={task.taskDescription}
+                finishedTask={task.finishedTask}
+              />
             ))
           ) : (
             <div className={styles.empty_list}>

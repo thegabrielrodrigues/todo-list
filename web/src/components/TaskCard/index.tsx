@@ -5,7 +5,11 @@ import { TaskDTO } from '@/dtos/TaskDTO';
 
 import styles from './styles.module.css';
 
-export function TaskCard({ taskDescription, finishedTask = true }: TaskDTO) {
+interface TaskCardProps {
+  onRemove: (taskDescription: string) => void;
+}
+
+export function TaskCard({ onRemove, taskDescription, finishedTask = true }: TaskCardProps & TaskDTO) {
   return (
     <>
       {finishedTask === true && (
@@ -16,7 +20,7 @@ export function TaskCard({ taskDescription, finishedTask = true }: TaskDTO) {
 
           <p className={`${styles.task_description} ${styles.finished}`}>{taskDescription}</p>
 
-          <button className={styles.trash_button}>
+          <button className={styles.trash_button} onClick={() => onRemove(taskDescription)}>
             <img src={Trash} />
           </button>
         </div>
@@ -29,7 +33,7 @@ export function TaskCard({ taskDescription, finishedTask = true }: TaskDTO) {
 
           <p className={styles.task_description}>{taskDescription}</p>
 
-          <button className={styles.trash_button}>
+          <button className={styles.trash_button} onClick={() => onRemove(taskDescription)}>
             <img src={Trash} />
           </button>
         </div>

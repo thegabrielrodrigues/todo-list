@@ -20,6 +20,7 @@
   border: none;
   background-color: transparent;
   line-height: 0;
+  cursor: pointer;
 }
 
 .task_card_container .task_description {
@@ -36,6 +37,7 @@
   margin: -0.25rem -0.25rem 0 0;
   background-color: transparent;
   line-height: 0;
+  cursor: pointer;
 }
 
 .trash_button img {
