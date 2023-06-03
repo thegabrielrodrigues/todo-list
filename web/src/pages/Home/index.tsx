@@ -57,6 +57,21 @@ export function Home() {
     });
   }
 
+  function handleMarkTaskAsFinished(taskDescription: string) {
+    tasks.reduce(
+      (prev, curr) => {
+        if (curr.taskDescription === taskDescription) {
+          curr.finishedTask = !curr.finishedTask;
+        }
+
+        return prev;
+      },
+      { taskDescription: '', finishedTask: false }
+    );
+
+    setTasks([...tasks]);
+  }
+
   return (
     <div className={styles.home_container}>
       <Header />
@@ -75,6 +90,7 @@ export function Home() {
               <TaskCard
                 key={task.taskDescription}
                 onRemove={handleRemoveTask}
+                onMarkTaskAsFinished={handleMarkTaskAsFinished}
                 taskDescription={task.taskDescription}
                 finishedTask={task.finishedTask}
               />

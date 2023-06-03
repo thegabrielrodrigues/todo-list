@@ -7,14 +7,15 @@ import styles from './styles.module.css';
 
 interface TaskCardProps {
   onRemove: (taskDescription: string) => void;
+  onMarkTaskAsFinished: (taskDescription: string) => void;
 }
 
-export function TaskCard({ onRemove, taskDescription, finishedTask = true }: TaskCardProps & TaskDTO) {
+export function TaskCard({ onRemove, onMarkTaskAsFinished, taskDescription, finishedTask = true }: TaskCardProps & TaskDTO) {
   return (
     <>
       {finishedTask === true && (
         <div className={`${styles.task_card_container} ${styles.finished}`}>
-          <button className={styles.finished_task_check_button}>
+          <button className={styles.finished_task_check_button} onClick={() => onMarkTaskAsFinished(taskDescription)}>
             <img src={Check} />
           </button>
 
@@ -27,7 +28,7 @@ export function TaskCard({ onRemove, taskDescription, finishedTask = true }: Tas
       )}
       {finishedTask === false && (
         <div className={styles.task_card_container}>
-          <button className={styles.finished_task_check_button}>
+          <button className={styles.finished_task_check_button} onClick={() => onMarkTaskAsFinished(taskDescription)}>
             <img src={Uncheck} />
           </button>
 
