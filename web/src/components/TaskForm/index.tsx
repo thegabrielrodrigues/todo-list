@@ -41,6 +41,7 @@ export function TaskForm({ tasks, setTasks }: TaskFormProps) {
       };
 
       setTasks((prevState) => [...prevState, newTask]);
+      setTaskDescription('');
     }
   }
 

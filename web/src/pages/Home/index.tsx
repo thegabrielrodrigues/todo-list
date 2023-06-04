@@ -14,6 +14,9 @@ import styles from './styles.module.css';
 export function Home() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
 
+  const completedTasksNumber = tasks.filter((item) => item.finishedTask === true).length;
+  const uncompletedTasksNumber = tasks.filter((item) => item.finishedTask === false).length;
+
   function handleRemoveTask(taskDescription: string) {
     Swal.fire({
       title: 'Remover tarefa',
@@ -80,8 +83,8 @@ export function Home() {
         <TaskForm tasks={tasks} setTasks={setTasks} />
 
         <div className={styles.tasks_number}>
-          <TasksNumber description="Tarefas criadas" quantity={4} color="PRIMARY" />
-          <TasksNumber description="Tarefas concluídas" quantity={6} color="SECONDARY" />
+          <TasksNumber description="Tarefas criadas" quantity={uncompletedTasksNumber} color="PRIMARY" />
+          <TasksNumber description="Tarefas concluídas" quantity={completedTasksNumber} color="SECONDARY" />
         </div>
 
         <div className={styles.tasks}>
