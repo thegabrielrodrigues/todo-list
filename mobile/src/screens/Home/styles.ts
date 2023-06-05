@@ -16,4 +16,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 24,
     backgroundColor: '#1A1A1A',
   },
+  tasksNumber: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 32,
+    marginBottom: 20,
+  },
 });
