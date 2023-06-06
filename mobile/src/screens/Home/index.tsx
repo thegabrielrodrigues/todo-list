@@ -14,11 +14,29 @@ import { styles } from './styles';
 export function Home() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
 
+  const completedTasksNumber = tasks.filter((item) => item.finishedTask === true).length;
+  const uncompletedTasksNumber = tasks.filter((item) => item.finishedTask === false).length;
+
   function handleRemoveTask(taskDescription: string) {
     Alert.alert('Remover tarefa', 'Você deseja realmente excluir esta tarefa?', [
       { text: 'Sim', onPress: () => setTasks(tasks.filter((task) => task.taskDescription !== taskDescription)) },
       { text: 'Não', style: 'cancel' },
     ]);
+  }
+
+  function handleMarkTaskAsFinished(taskDescription: string) {
+    tasks.reduce(
+      (prev, curr) => {
+        if (curr.taskDescription === taskDescription) {
+          curr.finishedTask = !curr.finishedTask;
+        }
+
+        return prev;
+      },
+      { taskDescription: '', finishedTask: false }
+    );
+
+    setTasks([...tasks]);
   }
 
   return (
@@ -31,15 +49,20 @@ export function Home() {
         <TaskForm tasks={tasks} setTasks={setTasks} />
 
         <View style={styles.tasksNumber}>
-          <TasksNumber description="Tarefas criadas" quantity={4} color="PRIMARY" />
-          <TasksNumber description="Tarefas concluídas" quantity={6} color="SECONDARY" />
+          <TasksNumber description="Tarefas criadas" quantity={uncompletedTasksNumber} color="PRIMARY" />
+          <TasksNumber description="Tarefas concluídas" quantity={completedTasksNumber} color="SECONDARY" />
         </View>
 
         <FlatList
           data={tasks}
           keyExtractor={(item) => item.taskDescription}
           renderItem={({ item }) => (
-            <TaskCard onRemove={handleRemoveTask} taskDescription={item.taskDescription} finishedTask={item.finishedTask} />
+            <TaskCard
+              onRemove={handleRemoveTask}
+              onMarkTaskAsFinished={handleMarkTaskAsFinished}
+              taskDescription={item.taskDescription}
+              finishedTask={item.finishedTask}
+            />
           )}
           ListEmptyComponent={() => (
             <View style={styles.emptyList}>

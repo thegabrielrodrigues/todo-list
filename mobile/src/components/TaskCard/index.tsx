@@ -9,27 +9,28 @@ import { styles } from './styles';
 
 interface TaskCardProps {
   onRemove: (taskDescription: string) => void;
+  onMarkTaskAsFinished: (taskDescription: string) => void;
 }
 
-export function TaskCard({ onRemove, taskDescription, finishedTask }: TaskCardProps & TaskDTO) {
+export function TaskCard({ onRemove, onMarkTaskAsFinished, taskDescription, finishedTask }: TaskCardProps & TaskDTO) {
   return (
     <>
       {finishedTask === true && (
         <View style={[styles.taskCardContainer, styles.finishedTaskCard]}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => onMarkTaskAsFinished(taskDescription)}>
             <Check />
           </TouchableOpacity>
 
           <Text style={[styles.taskDescription, styles.finishedTaskDescription]}>{taskDescription}</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => onRemove(taskDescription)}>
             <Trash />
           </TouchableOpacity>
         </View>
       )}
       {finishedTask === false && (
         <View style={styles.taskCardContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => onMarkTaskAsFinished(taskDescription)}>
             <Uncheck />
           </TouchableOpacity>
 
