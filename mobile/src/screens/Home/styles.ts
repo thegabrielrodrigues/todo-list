@@ -22,4 +22,20 @@ export const styles = StyleSheet.create({
     marginTop: 32,
     marginBottom: 20,
   },
+  emptyList: {
+    alignItems: 'center',
+    paddingTop: 64,
+    borderTopWidth: 1,
+    borderTopColor: '#333333',
+  },
+  emptyListStrongText: {
+    marginTop: 16,
+    color: '#808080',
+    fontWeight: 'bold',
+    lineHeight: 24,
+  },
+  emptyListNormalText: {
+    color: '#808080',
+    lineHeight: 24,
+  },
 });
