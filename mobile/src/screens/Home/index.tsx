@@ -20,7 +20,7 @@ export function Home() {
       </View>
 
       <View style={styles.content}>
-        <TaskForm />
+        <TaskForm tasks={tasks} setTasks={setTasks} />
 
         <View style={styles.tasksNumber}>
           <TasksNumber description="Tarefas criadas" quantity={4} color="PRIMARY" />
