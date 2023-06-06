@@ -7,9 +7,11 @@ import { TaskDTO } from '@/dtos/TaskDTO';
 
 import { styles } from './styles';
 
-interface TaskCardProps {}
+interface TaskCardProps {
+  onRemove: (taskDescription: string) => void;
+}
 
-export function TaskCard({ taskDescription, finishedTask }: TaskDTO & TaskCardProps) {
+export function TaskCard({ onRemove, taskDescription, finishedTask }: TaskCardProps & TaskDTO) {
   return (
     <>
       {finishedTask === true && (
@@ -33,7 +35,7 @@ export function TaskCard({ taskDescription, finishedTask }: TaskDTO & TaskCardPr
 
           <Text style={styles.taskDescription}>{taskDescription}</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => onRemove(taskDescription)}>
             <Trash />
           </TouchableOpacity>
         </View>

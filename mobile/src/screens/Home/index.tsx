@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
+import { Alert } from 'react-native';
 
 import Clipboard from '@/assets/clipboard.svg';
 import Logo from '@/assets/logo.svg';
@@ -12,6 +13,13 @@ import { styles } from './styles';
 
 export function Home() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
+
+  function handleRemoveTask(taskDescription: string) {
+    Alert.alert('Remover tarefa', 'Você deseja realmente excluir esta tarefa?', [
+      { text: 'Sim', onPress: () => setTasks(tasks.filter((task) => task.taskDescription !== taskDescription)) },
+      { text: 'Não', style: 'cancel' },
+    ]);
+  }
 
   return (
     <View style={styles.container}>
@@ -30,7 +38,9 @@ export function Home() {
         <FlatList
           data={tasks}
           keyExtractor={(item) => item.taskDescription}
-          renderItem={({ item }) => <TaskCard taskDescription={item.taskDescription} finishedTask={item.finishedTask} />}
+          renderItem={({ item }) => (
+            <TaskCard onRemove={handleRemoveTask} taskDescription={item.taskDescription} finishedTask={item.finishedTask} />
+          )}
           ListEmptyComponent={() => (
             <View style={styles.emptyList}>
               <Clipboard />
