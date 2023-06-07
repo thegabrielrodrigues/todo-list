@@ -7,7 +7,7 @@
 <h4 align="center">
 
     🚧 ToDo List ✔️
-    🚧 Em Desenvolvimento 🔨
+    🚧 Finalizado 🦾
 </h4>
 
 <br>
@@ -19,10 +19,10 @@ O app ToDo List ✔️ surgiu com o propósito de ajudar pessoas a se organizare
 <br>
 
 ## ⚙️ Funcionalidades
-- [ ] adicionar uma nova tarefa
-- [ ] marcar e desmarcar uma tarefa como concluída
-- [ ] remover uma tarefa da listagem
-- [ ] mostrar o progresso de conclusão das tarefas
+- [x] adicionar uma nova tarefa
+- [x] marcar e desmarcar uma tarefa como concluída
+- [x] remover uma tarefa da listagem
+- [x] mostrar o progresso de conclusão das tarefas
 
 ---
 <br>
